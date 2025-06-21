@@ -2,37 +2,135 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  text-align: center;
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input[type="text"] {
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 12px;
+  font-size: 16px;
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #5e35b1;
+}
+
+.apps,
+.text-input,
+.status {
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.status p {
+  color: #333;
+  font-weight: bold;
+}
+
+.remote {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 30px;
+}
+
+.remote-grid {
+  display: grid;
+  grid-template-areas:
+    "home home home"
+    ". up ."
+    "left select right"
+    ". down ."
+    "back back back";
+  grid-gap: 12px;
+  margin-top: 0;
+}
+
+.remote-grid button {
+  padding: 20px;
+  align-items: center;
+  background-color: #333;
   color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.remote-grid button:hover {
+  background-color: #555;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.remote-grid .home {
+  grid-area: home;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+}
+
+.remote-grid .back {
+  grid-area: back;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+}
+
+.remote-grid .up {
+  grid-area: up;
+}
+.remote-grid .down {
+  grid-area: down;
+}
+.remote-grid .left {
+  grid-area: left;
+}
+.remote-grid .right {
+  grid-area: right;
+}
+.remote-grid .select {
+  grid-area: select;
+  background-color: #673ab7;
 }
