@@ -13,7 +13,7 @@ function RemoteControlRoku() {
     }
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_PROD}/roku/${rokuIp}/keypress/${command}`
+        `https://back-rcontrol.vercel.app/roku/${rokuIp}/keypress/${command}`
       );
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       setStatus(`${command}: ${res.status}`);
@@ -29,7 +29,7 @@ function RemoteControlRoku() {
       return;
     }
     try {
-      await fetch(`${process.env.REACT_APP_BACKEND_PROD}/roku/launch/${appId}`);
+      await fetch(`https://back-rcontrol.vercel.app/roku/launch/${appId}`);
       setStatus(`App ${appId} iniciado!`);
     } catch (error) {
       setStatus(`Erro na rede: ${error.message}`);
@@ -43,7 +43,7 @@ function RemoteControlRoku() {
     }
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_PROD}/roku/input?text=${encodeURIComponent(
+        `https://back-rcontrol.vercel.app/roku/input?text=${encodeURIComponent(
           textInput
         )}`
       );
@@ -56,7 +56,9 @@ function RemoteControlRoku() {
 
   async function fetchApps() {
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_PROD}/roku/query/apps`);
+      const res = await fetch(
+        `https://back-rcontrol.vercel.app/roku/query/apps`
+      );
       console.log(res);
       const xml = await res.text();
       const doc = new DOMParser().parseFromString(xml, "application/xml");
