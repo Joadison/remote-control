@@ -34,7 +34,7 @@ function RemoteControlAmazon() {
     }
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/firetv/${ip}/connect`,
+        `${process.env.REACT_APP_BACKEND_PROD}/firetv/${ip}/connect`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ function RemoteControlAmazon() {
       );
       if (!res.ok) throw new Error(`Erro de conexão com a TV`);
       const resapps = await fetch(
-        `${process.env.REACT_APP_BACKEND}/firetv/${ip}/apps`
+        `${process.env.REACT_APP_BACKEND_PROD}/firetv/${ip}/apps`
       );
       const data = await resapps.json();
       setFireTvApps(data);
@@ -60,7 +60,7 @@ function RemoteControlAmazon() {
     try {
       const res = await fetch(
         `${
-          process.env.REACT_APP_BACKEND
+          process.env.REACT_APP_BACKEND_PROD
         }/firetv/${ip}/keypress/${command.toLowerCase()}`,
         {
           method: "POST",
@@ -78,7 +78,7 @@ function RemoteControlAmazon() {
       return;
     }
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/lg/toast`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_PROD}/lg/toast`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: textInput }),
@@ -97,7 +97,7 @@ function RemoteControlAmazon() {
     }
     try {
       await fetch(
-        `${process.env.REACT_APP_BACKEND}/firetv/${ip}/launch/${packageName}`,
+        `${process.env.REACT_APP_BACKEND_PROD}/firetv/${ip}/launch/${packageName}`,
         {
           method: "POST",
         }

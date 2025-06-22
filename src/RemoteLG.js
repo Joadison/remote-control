@@ -38,13 +38,16 @@ function RemoteControlLG() {
       return;
     }
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/lg/connect`, {
-        method: "POST",
-        body: JSON.stringify({
-          ip,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_PROD}/lg/connect`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            ip,
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!res.ok) throw new Error(`Erro de conexão com a TV`);
       setStatus("Conectado à LG");
     } catch (error) {
@@ -63,10 +66,13 @@ function RemoteControlLG() {
           ? "/lg/command/power"
           : `/lg/command/${command.toLowerCase()}`;
 
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_PROD}${endpoint}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!res.ok) throw new Error(`Erro de conexão com a TV`);
       setStatus(`${command} enviado`);
     } catch (error) {
@@ -80,11 +86,14 @@ function RemoteControlLG() {
       return;
     }
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/lg/toast`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: textInput }),
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_PROD}/lg/toast`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: textInput }),
+        }
+      );
       if (!res.ok) throw new Error(`Erro de conexão com a TV`);
       setStatus(`Notificação enviada: "${textInput}"`);
       setTextInput("");
@@ -100,7 +109,7 @@ function RemoteControlLG() {
     }
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND}/lg/launch/${appId}`,
+        `${process.env.REACT_APP_BACKEND_PROD}/lg/launch/${appId}`,
         {
           method: "POST",
         }
@@ -143,7 +152,7 @@ function RemoteControlLG() {
     setPointerPosition({ x: newX, y: newY });
 
     try {
-      await fetch(`${process.env.REACT_APP_BACKEND}/lg/pointer/move`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_PROD}/lg/pointer/move`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ x: newX, y: newY }),
